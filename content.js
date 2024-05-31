@@ -1,4 +1,5 @@
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
+import chromium from "@sparticuz/chromium-min";
 
 const SELECTORS = {
   "adengad.net": ".contnews",
@@ -41,7 +42,16 @@ export async function getContent(url) {
     const selector = SELECTORS[host];
     if (!selector) return null;
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
+      defaultViewport: chromium.defaultViewport,
+      // you have to point to a Chromium tar file here 👇
+      executablePath: await chromium.executablePath(
+        `https://github.com/Sparticuz/chromium/releases/download/v116.0.0/chromium-v116.0.0-pack.tar`
+      ),
+      headless: chromium.headless,
+      ignoreHTTPSErrors: true,
+    });
     const page = await browser.newPage();
 
     await page.goto(url);
