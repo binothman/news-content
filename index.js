@@ -2,7 +2,7 @@ import express from "express";
 import { getContent } from "./content.js";
 
 const app = express();
-const port = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000;
 
 app.use(express.json());
 
