@@ -9,7 +9,7 @@ export async function getContent(url) {
     if (!url) return null;
 
     const browser = await puppeteer.launch({
-      // executablePath,
+      executablePath,
       defaultViewport: null,
       headless: true,
       ignoreHTTPSErrors: true,
