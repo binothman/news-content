@@ -1,6 +1,8 @@
 import puppeteer from "puppeteer-core";
 
-const executablePath = process.env.EXECUTABLE_PATH || "/usr/bin/google-chrome";
+const executablePath =
+  process.env.EXECUTABLE_PATH ||
+  "/opt/render/project/src/.cache/puppeteer/chrome/linux-125.0.6422.78/chrome-linux64/chrome";
 
 export async function getContent(url) {
   try {
