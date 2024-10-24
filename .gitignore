@@ -3,3 +3,4 @@ package-lock.json
 /puppeteer-cache
 .DS_Store
 .cache
+.env

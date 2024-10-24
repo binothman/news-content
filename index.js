@@ -1,5 +1,5 @@
 import express from "express";
-
+import { getContent } from "./content.js";
 const app = express();
 const PORT = process.env.PORT || 4000;
 
@@ -10,4 +10,11 @@ app.post("/webhook", async (req, res) => {
   res.sendStatus(200);
 });
 
-app.listen(PORT, () => console.log("we are live"));
+app.get("/get-html", async (req, res) => {
+  const { url } = req.query;
+  const html = await getContent(url);
+  res.set("Content-Type", "text/html");
+  res.send(html);
+});
+
+app.listen(PORT, () => console.log("we are live", PORT));
