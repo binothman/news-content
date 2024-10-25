@@ -1,5 +1,5 @@
 import express from "express";
-import { getContent } from "./content.js";
+import { getHtmlThoughCloudflare } from "./test.js";
 const app = express();
 const PORT = process.env.PORT || 4000;
 
@@ -12,7 +12,7 @@ app.post("/webhook", async (req, res) => {
 
 app.get("/get-html", async (req, res) => {
   const { url } = req.query;
-  const html = await getContent(url);
+  const html = await getHtmlThoughCloudflare(url);
   res.set("Content-Type", "text/html");
   res.send(html);
 });
