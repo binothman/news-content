@@ -60,7 +60,10 @@ export async function getHtmlThoughCloudflare(url) {
         }
       });
 
-      await page.goto(url);
+      await page.goto(url, {
+        waitUntil: "domcontentloaded",
+        timeout: 0,
+      });
       const html = await page.content();
       await browser.close();
       return html;
